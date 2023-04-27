@@ -12,14 +12,15 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     private val clickSubject = BehaviorSubject.create<Unit>()
-    var compositeDisposable = CompositeDisposable()
-    var count = 0
+    private var compositeDisposable = CompositeDisposable()
+    private var count = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        addCallBacks()
     }
 
     fun addCallBacks() {
@@ -44,7 +45,6 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("CheckResult")
     private fun goToSecond() {
         clickSubject.throttleFirst(2, TimeUnit.SECONDS).subscribe {
-            Log.i(TAG, "GO TO SECOND")
             startActivity(Intent(this,SecondActivity::class.java))
         }
     }

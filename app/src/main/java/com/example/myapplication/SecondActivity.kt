@@ -8,15 +8,16 @@ import com.example.rx_java.RxBus.Companion.behaviorSubject
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 class SecondActivity : AppCompatActivity() {
-    lateinit var binding: SecondActivityBinding
+    private lateinit var binding: SecondActivityBinding
     private val compositeDisposable = CompositeDisposable()
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = SecondActivityBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        addCallBacks()
     }
 
-    fun addCallBacks() {
+    private fun addCallBacks() {
         getCounter()
     }
 
